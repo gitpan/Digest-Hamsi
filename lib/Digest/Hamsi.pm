@@ -6,7 +6,7 @@ use parent qw(Exporter Digest::base);
 
 use MIME::Base64 ();
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 $VERSION = eval $VERSION;
 
 eval {
@@ -24,33 +24,6 @@ our @EXPORT_OK = qw(
     hamsi_384 hamsi_384_hex hamsi_384_base64
     hamsi_512 hamsi_512_hex hamsi_512_base64
 );
-
-# TODO: convert to C.
-sub hamsi_224_hex  { unpack 'H*', hamsi_224(@_) }
-sub hamsi_256_hex  { unpack 'H*', hamsi_256(@_) }
-sub hamsi_384_hex  { unpack 'H*', hamsi_384(@_) }
-sub hamsi_512_hex  { unpack 'H*', hamsi_512(@_) }
-
-sub hamsi_224_base64 {
-    my $b64 = MIME::Base64::encode(hamsi_224(@_), '');
-    $b64 =~ s/=+$//g;
-    return $b64;
-}
-sub hamsi_256_base64 {
-    my $b64 = MIME::Base64::encode(hamsi_256(@_), '');
-    $b64 =~ s/=+$//g;
-    return $b64;
-}
-sub hamsi_384_base64 {
-    my $b64 = MIME::Base64::encode(hamsi_384(@_), '');
-    $b64 =~ s/=+$//g;
-    return $b64;
-}
-sub hamsi_512_base64 {
-    my $b64 = MIME::Base64::encode(hamsi_512(@_), '');
-    $b64 =~ s/=+$//g;
-    return $b64;
-}
 
 sub add_bits {
     my ($self, $data, $bits) = @_;
@@ -75,8 +48,8 @@ Digest::Hamsi - Perl interface to the Hamsi digest algorithm
     use Digest::Hamsi qw(hamsi_256 hamsi_256_hex hamsi_256_base64);
 
     $digest = hamsi_256($data);
-    $digest = hamsi_hex_256($data);
-    $digest = hamsi_base64_256($data);
+    $digest = hamsi_256_hex($data);
+    $digest = hamsi_256_base64($data);
 
     # Object-oriented interface
     use Digest::Hamsi;
@@ -156,6 +129,8 @@ Returns the algorithm used by the object.
 =head1 SEE ALSO
 
 L<Digest>
+
+L<Task::Digest>
 
 L<http://homes.esat.kuleuven.be/~okucuk/hamsi/>
 
