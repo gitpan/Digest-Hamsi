@@ -4,9 +4,7 @@ use strict;
 use warnings;
 use parent qw(Exporter Digest::base);
 
-use MIME::Base64 ();
-
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 $VERSION = eval $VERSION;
 
 eval {
@@ -66,7 +64,8 @@ Digest::Hamsi - Perl interface to the Hamsi digest algorithm
 =head1 DESCRIPTION
 
 The C<Digest::Hamsi> module provides an interface to the Hamsi message
-digest algorithm. Hamsi is a candidate in the NIST SHA-3 competition.
+digest algorithm. Hamsi was a candidate in the NIST SHA-3 competition but
+did progress beyond round 2.
 
 This interface follows the conventions set forth by the C<Digest> module.
 
@@ -179,7 +178,7 @@ L<http://search.cpan.org/dist/Digest-Hamsi/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2010 gray <gray at cpan.org>, all rights reserved.
+Copyright (C) 2010-2011 gray <gray at cpan.org>, all rights reserved.
 
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
